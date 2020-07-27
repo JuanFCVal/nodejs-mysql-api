@@ -8,7 +8,7 @@ const mysqlConnection = mysql.createConnection({
     database: 'heroku_165707ab10392f8',
     multipleStatments: true
 });
-// b8747b60318c94:cfb48514@us-cdbr-east-02.cleardb.com/heroku_165707ab10392f8?reconnect=true
+
 
 mysqlConnection.connect(function (err) {
     if(err){
