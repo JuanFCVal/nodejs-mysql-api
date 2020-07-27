@@ -7,7 +7,10 @@ app.set('port', process.env.PORT || 3000); //Acepta el puerto que nos da el serv
 //Middlewares
 app.use(express.json());  //Acepta el formato Json como dato
 
-
+//Route
+app.get('/', (req,res) => {
+    res.send('Welcome to my Api');
+})
 //Routes
 app.use(require('./routes/banderas'));
 app.use(require('./routes/donacion'));
