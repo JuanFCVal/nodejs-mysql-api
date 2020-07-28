@@ -54,13 +54,13 @@ router.get("/bandera/:id", (req, res) => {
 //Insertar un dato dentro de nuestra tabla 
 router.post('/bandera/', (req, res)=>{
     const {idBandera, latitud, referencia, calleP, calleS, nroCasa, nIntegrantes,nombreBeneficiario,cedulaBeneficiario, apellidoBeneficiario,
-        Usuario_cedula, Evidencias_idEvidencias, longitud } = req.body //Obtenemos el usuario desde la aplicacion 
+        Usuario_cedula, Evidencias_idEvidencias, longitud, fechaRegistro, estado } = req.body //Obtenemos el usuario desde la aplicacion 
     const query = ` 
 
-    CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?);
+    CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
     `;
     mysqlConnection.query(query, [idBandera,latitud, referencia, calleP, calleS, nroCasa, nIntegrantes,nombreBeneficiario,cedulaBeneficiario, apellidoBeneficiario,
-        Usuario_cedula, Evidencias_idEvidencias, longitud], (err, rows, fields)=>{
+        Usuario_cedula, Evidencias_idEvidencias, longitud,fechaRegistro, estado], (err, rows, fields)=>{
             if (!err) {
                 res.json({Status: 'Bandera registrada'});
               } else {
@@ -71,11 +71,11 @@ router.post('/bandera/', (req, res)=>{
 //Metodo de actualizacion
 router.put('/bandera/:id', (req, res ) =>{
     const { latitud, referencia, calleP, calleS, nroCasa, nIntegrantes,nombreBeneficiario,cedulaBeneficiario, apellidoBeneficiario,
-        Usuario_cedula, Evidencias_idEvidencias, longitud } = req.body;
+        Usuario_cedula, Evidencias_idEvidencias, longitud,fechaRegistro, estado } = req.body;
     const{ id } = req.params;
-    const query = "CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?);"
+    const query = "CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
     mysqlConnection.query(query, [id,latitud, referencia, calleP, calleS, nroCasa, nIntegrantes,nombreBeneficiario,cedulaBeneficiario, apellidoBeneficiario,
-        Usuario_cedula, Evidencias_idEvidencias, longitud], (err, rows, fields)=>{
+        Usuario_cedula, Evidencias_idEvidencias, longitud,fechaRegistro, estado], (err, rows, fields)=>{
             if (!err) {
                 res.json({status: 'Se ha actualizado la bandera de id'+id});
               } else {
