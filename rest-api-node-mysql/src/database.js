@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-//Parametros de conexión a la base de datos
+//Parametros de conexión a la base de datos a
 var dbconfig ={
     host: 'us-cdbr-east-02.cleardb.com',
     user: 'b8747b60318c94',
