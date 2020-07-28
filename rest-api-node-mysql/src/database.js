@@ -32,9 +32,10 @@ function handleDisconnect() {
 mysqlConnection.connect(function (err) {
     if(err){
         console.log(err);
+        handleDisconnect();
         return;
     }else{
-        handleDisconnect()
+        handleDisconnect();
         console.log("Db is connected");
     }
 });
