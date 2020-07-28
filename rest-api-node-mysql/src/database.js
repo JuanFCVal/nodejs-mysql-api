@@ -1,13 +1,14 @@
 const mysql = require('mysql');
 
 //Parametros de conexión a la base de datos
-const mysqlConnection = mysql.createConnection({
+var dbconfig ={
     host: 'us-cdbr-east-02.cleardb.com',
     user: 'b8747b60318c94',
     password: 'cfb48514',
     database: 'heroku_165707ab10392f8',
     multipleStatments: true
-});
+};
+const mysqlConnection = mysql.createConnection(dbconfig);
 
 
 mysqlConnection.connect(function (err) {
