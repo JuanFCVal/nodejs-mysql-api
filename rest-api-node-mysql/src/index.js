@@ -4,7 +4,7 @@ var cors = require('cors');
 const wakeDyno = require("woke-dyno");
 //Settings
 //Solo para pushear xd
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT, () => {
     wakeDyno({
         url: "https://redflag-api.herokuapp.com/usuario/1",  // url string
         interval: 20000, // interval in milliseconds (1 minute in this example)
