@@ -66,7 +66,7 @@ router.get("/bandera/:id", (req, res) => {
 });
 
 //Insertar un dato dentro de nuestra tabla
-router.post("/bandera/", (req, res) => {
+router.post("/bandera/", urlencoded,(req, res) => {
   const {
     idBandera,
     latitud,

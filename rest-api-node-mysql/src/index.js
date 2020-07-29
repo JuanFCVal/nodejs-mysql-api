@@ -3,6 +3,11 @@ const  app = express();
 const morgan = require('morgan');
 //var cors = require('cors');
 const wakeDyno = require("woke-dyno");
+const http = require('http');
+
+const server = http.createServer((request, response) => {
+    // magic happens here!
+  });
 //Settings
 const port = process.env.PORT;
 app.set('port', port || 3000); //Acepta el puerto que nos da el servidor en caso que no te de uda el 3000
