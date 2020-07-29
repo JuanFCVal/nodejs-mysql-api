@@ -2,6 +2,7 @@ const express = require('express');
 const  app = express();
 
 //Settings
+//Solo para pushear xd
 app.set('port', process.env.PORT || 3000); //Acepta el puerto que nos da el servidor en caso que no te de uda el 3000
 
 //Middlewares
