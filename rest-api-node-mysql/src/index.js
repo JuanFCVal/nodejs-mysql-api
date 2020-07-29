@@ -1,13 +1,11 @@
 const express = require('express');
 const  app = express();
 const morgan = require('morgan');
-//var cors = require('cors');
+var cors = require('cors');
 const wakeDyno = require("woke-dyno");
 const http = require('http');
 
-const server = http.createServer((request, response) => {
-    // magic happens here!
-  });
+
 //Settings
 const port = process.env.PORT;
 app.set('port', port || 3000); //Acepta el puerto que nos da el servidor en caso que no te de uda el 3000
@@ -15,9 +13,15 @@ app.set('port', port || 3000); //Acepta el puerto que nos da el servidor en caso
 //Middlewares witohout corse
 app.use(express.json());  //Acepta el formato Json como dato
 app.use(morgan('dev'));
-//app.use(cors());
+app.use(cors());
 app.use(express.urlencoded({extended: false}));
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*'); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header("Access-Control-Allow-Headers", 'GET,PUT,POST,DELETE,OPTIONES');
+    res.header("Access-Control-Allow-Headers", 'Content-Type, Authorization, Content-Lengt');
+    next();
+  });
 //Route
 app.get('/', (req,res) => {
     res.send('Welcome to my Api');
