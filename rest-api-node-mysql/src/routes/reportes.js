@@ -12,6 +12,7 @@ router.get("/reportes/", (req, res) => {
       console.log("No se pudo obtener los falsabanderas " + err);
     }
   });
+  mysqlConnection.end();
 });
 
 //Busqueda de falsabandera recibiendo como parametro id de la falsabandera
@@ -25,20 +26,26 @@ router.get("/reportes/:id", (req, res) => {
       console.log("No se pudo obtener las falsabanderas " + err);
     }
   });
+  mysqlConnection.end();
 });
-
 
 //Ver evidencias de los reportes
 router.get("/reportes/:id/evidencias", (req, res) => {
   const { id } = req.params;
   const { id1 } = req.params;
-  mysqlConnection.query("SELECT * FROM falsabandera fb , evidencias e WHERE e.idEvidencias = fb.Evidencias_idEvidencias and idFalsaBandera= ? ",[id], (err, rows, fields) => {//Sentencia y lo que podemos obtener
-    if (!err) {
-      res.json(rows);
-    } else {
-      console.log("No se pudo obtener las banderas " + err);
+  mysqlConnection.query(
+    "SELECT * FROM falsabandera fb , evidencias e WHERE e.idEvidencias = fb.Evidencias_idEvidencias and idFalsaBandera= ? ",
+    [id],
+    (err, rows, fields) => {
+      //Sentencia y lo que podemos obtener
+      if (!err) {
+        res.json(rows);
+      } else {
+        console.log("No se pudo obtener las banderas " + err);
+      }
     }
-  }); 
+  );
+  mysqlConnection.end();
 });
 
 //Insertar un dato dentro de nuestra tabla
@@ -58,6 +65,7 @@ router.post("/reportes/", (req, res) => {
       }
     }
   );
+  mysqlConnection.end();
 });
 //Metodo de actualizacion
 router.put("/reportes/:id", (req, res) => {
@@ -73,6 +81,7 @@ router.put("/reportes/:id", (req, res) => {
       console.log("No se ha actualizado la falsabandera " + err);
     }
   });
+  mysqlConnection.end();
 });
 
 router.delete("/reportes/:id", (req, res) => {
@@ -84,5 +93,6 @@ router.delete("/reportes/:id", (req, res) => {
       console.log("No se ha eliminado la falsabandera " + err);
     }
   });
+  mysqlConnection.end();
 });
 module.exports = router;

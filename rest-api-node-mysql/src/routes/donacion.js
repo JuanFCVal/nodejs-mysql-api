@@ -7,10 +7,12 @@ router.get("/donacion", (req, res) => {
   mysqlConnection.query("SELECT * FROM donacion", (err, rows, fields) => {//Sentencia y lo que podemos obtener
     if (!err) {
       res.json(rows);
+      mysqlConnection.end();
     } else {
       console.log("No se pudo obtener la lista donaciones " + err);
     }
   }); 
+  mysqlConnection.end();
 });
 
 //Ver los tipos de donaciones de una donacion
@@ -20,10 +22,12 @@ router.get("/donacion/:id/donaciones", (req, res) => {
   mysqlConnection.query("SELECT Tipo,idDonacion FROM donacion d INNER JOIN donacion_has_tipodonacion dd ON d.idDonacion =  dd.donacion_idDonacion INNER JOIN  tipodonacion td ON dd.tipodonacion_idTipoDonacion = td.idTipoDonacion WHERE idDonacion = ?",[id], (err, rows, fields) => {//Sentencia y lo que podemos obtener
     if (!err) {
       res.json(rows);
+
     } else {
       console.log("No se pudo obtener las banderas " + err);
     }
   }); 
+  mysqlConnection.end();
 });
 //Ver evidencias de las donaciones
 router.get("/donacion/:id/evidencias", (req, res) => {
@@ -35,7 +39,8 @@ router.get("/donacion/:id/evidencias", (req, res) => {
     } else {
       console.log("No se pudo obtener las banderas " + err);
     }
-  }); 
+  });
+  mysqlConnection.end(); 
 });
 
 //Busqueda de donacion recibiendo como parametro id de la donacion
@@ -48,6 +53,7 @@ router.get("/donacion/:id", (req, res) => {
       console.log("No se pudo obtener las donacion " + err);
     }
   });
+  mysqlConnection.end();
 });
 
 //Insertar un dato dentro de nuestra tabla 
@@ -64,6 +70,7 @@ router.post('/donacion/', (req, res)=>{
                 console.log("No se ha registrado la donacion " + err);
               }
         })
+        mysqlConnection.end();
 });
 //Metodo de actualizacion
 router.put('/donacion/:id', (req, res ) =>{
@@ -77,6 +84,7 @@ router.put('/donacion/:id', (req, res ) =>{
                 console.log("No se ha actualizado la donacion " + err);
               }
         })
+        mysqlConnection.end();
 });
 
 router.delete('/donacion/:id',(req, res) => {
@@ -88,5 +96,6 @@ router.delete('/donacion/:id',(req, res) => {
             console.log("No se ha eliminado la donacion " + err);
           }
     })
-})
+    mysqlConnection.end();
+});
 module.exports = router;

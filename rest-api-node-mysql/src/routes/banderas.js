@@ -11,7 +11,8 @@ router.get("/bandera/", (req, res) => {
       console.log("No se pudo obtener las banderas " + err);
     }
 
-  }); 
+  });
+  mysqlConnection.end(); 
 });
 //Ver los tipos de donaciones de una bandera
 router.get("/banderas/:id/donaciones", (req, res) => {
@@ -24,6 +25,7 @@ router.get("/banderas/:id/donaciones", (req, res) => {
       console.log("No se pudo obtener las banderas " + err);
     }
   }); 
+  mysqlConnection.end();
 });
 //Ver evidencias de las banderas
 router.get("/banderas/:id/evidencias", (req, res) => {
@@ -36,6 +38,7 @@ router.get("/banderas/:id/evidencias", (req, res) => {
       console.log("No se pudo obtener las banderas " + err);
     }
   }); 
+  mysqlConnection.end();
 });
 
 
@@ -49,6 +52,7 @@ router.get("/bandera/:id", (req, res) => {
       console.log("No se pudo obtener las banderas " + err);
     }
   });
+  mysqlConnection.end();
 });
 
 //Insertar un dato dentro de nuestra tabla 
@@ -66,7 +70,8 @@ router.post('/bandera/', (req, res)=>{
               } else {
                 console.log("No se ha registrado la bandera " + err);
               }
-        })
+        });
+        mysqlConnection.end();
 });
 //Metodo de actualizacion
 router.put('/bandera/:id', (req, res ) =>{
@@ -81,7 +86,8 @@ router.put('/bandera/:id', (req, res ) =>{
               } else {
                 console.log("No se ha actualizado la bandera " + err);
               }
-        })
+        });
+        mysqlConnection.end();
 });
 
 router.delete('/bandera/:id',(req, res) => {
@@ -92,6 +98,7 @@ router.delete('/bandera/:id',(req, res) => {
           } else {
             console.log("No se ha eliminado la bandera " + err);
           }
-    })
-})
+    });
+    mysqlConnection.end();
+});
 module.exports = router;
