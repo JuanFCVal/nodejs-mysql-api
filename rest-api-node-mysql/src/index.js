@@ -3,7 +3,6 @@ const  app = express();
 var cors = require('cors');
 const wakeDyno = require("woke-dyno");
 //Settings
-//Solo para pushear xd
 const port = process.env.PORT;
 app.set('port', port || 3000); //Acepta el puerto que nos da el servidor en caso que no te de uda el 3000
 
