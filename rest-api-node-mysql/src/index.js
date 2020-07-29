@@ -1,16 +1,16 @@
 const express = require('express');
 const  app = express();
 const morgan = require('morgan');
-var cors = require('cors');
+//var cors = require('cors');
 const wakeDyno = require("woke-dyno");
 //Settings
 const port = process.env.PORT;
 app.set('port', port || 3000); //Acepta el puerto que nos da el servidor en caso que no te de uda el 3000
 
-//Middlewares
+//Middlewares witohout corse
 app.use(express.json());  //Acepta el formato Json como dato
 app.use(morgan('dev'));
-app.use(cors());
+//app.use(cors());
 app.use(express.urlencoded({extended: false}));
 
 //Route
