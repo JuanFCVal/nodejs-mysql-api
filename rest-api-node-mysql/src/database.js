@@ -7,7 +7,6 @@ var dbconfig ={
     password: 'cfb48514',
     database: 'heroku_165707ab10392f8',
     multipleStatments: true,
-    connect_timeout:1000000
 };
 const mysqlConnection = mysql.createConnection(dbconfig);
 
