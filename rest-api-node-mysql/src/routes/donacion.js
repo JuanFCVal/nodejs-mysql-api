@@ -7,7 +7,6 @@ router.get("/donacion", (req, res) => {
   mysqlConnection.query("SELECT * FROM donacion", (err, rows, fields) => {//Sentencia y lo que podemos obtener
     if (!err) {
       res.json(rows);
-      mysqlConnection.end();
     } else {
       console.log("No se pudo obtener la lista donaciones " + err);
     }
