@@ -12,7 +12,7 @@ router.get("/usuario/", (req, res) => {
       console.log("No se pudo obtener los usuarios " + err);
     }
   });
-  mysqlConnection.end();
+
 });
 
 //Busqueda de usuario recibiendo como parametro id de la usuario
@@ -26,7 +26,7 @@ router.get("/usuario/:id", (req, res) => {
       console.log("No se pudo obtener las usuarios " + err);
     }
   });
-  mysqlConnection.end();
+
 });
 
 //Insertar un dato dentro de nuestra tabla
@@ -42,7 +42,6 @@ router.post("/usuario/", (req, res) => {
       console.log("No se ha registrado  usuario " + err);
     }
   });
-  mysqlConnection.end();
 });
 //Metodo de actualizacion
 router.put("/usuario/:cedula", (req, res) => {
@@ -58,7 +57,6 @@ router.put("/usuario/:cedula", (req, res) => {
       console.log("No se ha actualizado la usuario " + err);
     }
   });
-  mysqlConnection.end();
 });
 
 router.delete("/usuario/:cedula", (req, res) => {
@@ -70,6 +68,5 @@ router.delete("/usuario/:cedula", (req, res) => {
       console.log("No se ha eliminado la usuario " + err);
     }
   });
-  mysqlConnection.end();
 });
 module.exports = router;

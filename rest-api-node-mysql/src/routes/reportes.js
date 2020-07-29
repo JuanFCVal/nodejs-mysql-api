@@ -4,6 +4,7 @@ const router = express.Router();
 const mysqlConnection = require("../database"); //Trae la conexion de mysql, y usaremos la conexion para hacer consultas.
 
 router.get("/reportes/", (req, res) => {
+  
   mysqlConnection.query("SELECT * FROM falsabandera", (err, rows, fields) => {
     //Sentencia y lo que podemos obtener
     if (!err) {
@@ -12,7 +13,6 @@ router.get("/reportes/", (req, res) => {
       console.log("No se pudo obtener los falsabanderas " + err);
     }
   });
-  mysqlConnection.end();
 });
 
 //Busqueda de falsabandera recibiendo como parametro id de la falsabandera
@@ -26,7 +26,6 @@ router.get("/reportes/:id", (req, res) => {
       console.log("No se pudo obtener las falsabanderas " + err);
     }
   });
-  mysqlConnection.end();
 });
 
 //Ver evidencias de los reportes
@@ -45,7 +44,6 @@ router.get("/reportes/:id/evidencias", (req, res) => {
       }
     }
   );
-  mysqlConnection.end();
 });
 
 //Insertar un dato dentro de nuestra tabla
@@ -65,7 +63,7 @@ router.post("/reportes/", (req, res) => {
       }
     }
   );
-  mysqlConnection.end();
+
 });
 //Metodo de actualizacion
 router.put("/reportes/:id", (req, res) => {
@@ -81,7 +79,6 @@ router.put("/reportes/:id", (req, res) => {
       console.log("No se ha actualizado la falsabandera " + err);
     }
   });
-  mysqlConnection.end();
 });
 
 router.delete("/reportes/:id", (req, res) => {
@@ -93,6 +90,5 @@ router.delete("/reportes/:id", (req, res) => {
       console.log("No se ha eliminado la falsabandera " + err);
     }
   });
-  mysqlConnection.end();
 });
 module.exports = router;
