@@ -4,6 +4,7 @@ const router = express.Router();
 const mysqlConnection = require("../database"); //Trae la conexion de mysql, y usaremos la conexion para hacer consultas.
 
 router.get("/bandera/", (req, res) => {
+  mysqlConnection = require("../database");
   mysqlConnection.query("SELECT * FROM bandera", (err, rows, fields) => {
     //Sentencia y lo que podemos obtener
     if (!err) {
