@@ -25,7 +25,7 @@ app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
 } );
 
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
     wakeDyno({
         url: "https://redflag-api.herokuapp.com/usuario/1",  // url string
         interval: 20000, // interval in milliseconds (1 minute in this example)
