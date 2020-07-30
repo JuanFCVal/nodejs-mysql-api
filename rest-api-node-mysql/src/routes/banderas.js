@@ -39,8 +39,22 @@ router.get("/banderas/:id/donaciones", (req, res) => {
       }
     }
   );
-
 });
+
+router.get("/banderas/donaciones", (req, res) => {
+  mysqlConnection.query(
+    "SELECT Tipo,idBandera FROM bandera b INNER JOIN bandera_has_tipodonacion bd ON b.idBandera =  bd.bandera_idBandera INNER JOIN  tipodonacion td ON bd.tipodonacion_idTipoDonacion = td.idTipoDonacion",
+    (err, rows, fields) => {
+      //Sentencia y lo que podemos obtener
+      if (!err) {
+        res.json(rows);
+      } else {
+        console.log("No se pudo obtener las banderas " + err);
+      }
+    }
+  );
+});
+
 //Ver evidencias de las banderas
 router.get("/banderas/:id/evidencias", (req, res) => {
   const { id } = req.params;
