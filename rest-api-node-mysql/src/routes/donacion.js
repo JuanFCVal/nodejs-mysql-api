@@ -13,6 +13,16 @@ router.get("/donacion", (req, res) => {
   }); 
 });
 
+router.get("/donacion/pendiente", (req, res) => {
+  mysqlConnection.query("SELECT * FROM donacion where estado=0", (err, rows, fields) => {//Sentencia y lo que podemos obtener
+    if (!err) {
+      res.json(rows);
+    } else {
+      console.log("No se pudo obtener la lista donaciones " + err);
+    }
+  }); 
+});
+
 //Ver los tipos de donaciones de una donacion
 router.get("/donacion/:id/donaciones", (req, res) => {
   const { id } = req.params;
