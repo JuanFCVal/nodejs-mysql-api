@@ -73,7 +73,7 @@ router.get("/banderas/:id/evidencias", (req, res) => {
 });
 
 router.get("/bandera/evidencia", (req, res) => {
-  mysqlConnection.query("SELECT * FROM bandera, evidencias", (err, rows, fields) => {
+  mysqlConnection.query("SELECT Imagen1,Imagen2,Imagen3,idBandera FROM bandera b INNER JOIN evidencias e ON b.Evidencias_idEvidencias = e.idEvidencias", (err, rows, fields) => {
     //Sentencia y lo que podemos obtener
     if (!err) {
       res.json(rows);
