@@ -12,8 +12,18 @@ router.get("/bandera/", (req, res) => {
       console.log("No se pudo obtener las banderas " + err);
     }
   });
-
 });
+router.get("/bandera/pendiente", (req, res) => {
+  mysqlConnection.query("SELECT * FROM bandera WHERE estado = 0", (err, rows, fields) => {
+    //Sentencia y lo que podemos obtener
+    if (!err) {
+      res.json(rows);
+    } else {
+      console.log("No se pudo obtener las banderas " + err);
+    }
+  });
+});
+
 //Ver los tipos de donaciones de una bandera
 router.get("/banderas/:id/donaciones", (req, res) => {
   const { id } = req.params;
