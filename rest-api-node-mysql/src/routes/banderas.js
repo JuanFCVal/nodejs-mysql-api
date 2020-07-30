@@ -70,7 +70,17 @@ router.get("/banderas/:id/evidencias", (req, res) => {
       }
     }
   );
+});
 
+router.get("/bandera/evidencia", (req, res) => {
+  mysqlConnection.query("SELECT * FROM bandera, evidencias", (err, rows, fields) => {
+    //Sentencia y lo que podemos obtener
+    if (!err) {
+      res.json(rows);
+    } else {
+      console.log("No se pudo obtener las banderas " + err);
+    }
+  });
 });
 
 //Busqueda de bandera recibiendo como parametro id de la bandera

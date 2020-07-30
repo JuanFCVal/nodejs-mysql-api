@@ -14,6 +14,16 @@ router.get("/reportes/", (req, res) => {
   });
 });
 
+router.get("/reportes/evidencia", (req, res) => {
+  mysqlConnection.query("SELECT * FROM falsabandera,evidencias;", (err, rows, fields) => {
+    //Sentencia y lo que podemos obtener
+    if (!err) {
+      res.json(rows);
+    } else {
+      console.log("No se pudo obtener los falsabanderas " + err);
+    }
+  });
+});
 //Busqueda de falsabandera recibiendo como parametro id de la falsabandera
 router.get("/reportes/:id", (req, res) => {
   const { id } = req.params; //Parametro que recibire

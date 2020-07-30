@@ -39,6 +39,16 @@ router.get("/donacion/:id/evidencias", (req, res) => {
   });
 });
 
+router.get("/donacion/evidencias", (req, res) => {
+  mysqlConnection.query("SELECT * FROM donacion,evidencias", (err, rows, fields) => {//Sentencia y lo que podemos obtener
+    if (!err) {
+      res.json(rows);
+    } else {
+      console.log("No se pudo obtener la lista donaciones " + err);
+    }
+  }); 
+});
+
 //Busqueda de donacion recibiendo como parametro id de la donacion
 router.get("/donacion/:id", (req, res) => {
   const { id } = req.params;  //Parametro que recibire
