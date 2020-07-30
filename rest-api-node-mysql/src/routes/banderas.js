@@ -27,7 +27,6 @@ router.get("/bandera/pendiente", (req, res) => {
 //Ver los tipos de donaciones de una bandera
 router.get("/banderas/:id/donaciones", (req, res) => {
   const { id } = req.params;
-  const { id1 } = req.params;
   mysqlConnection.query(
     "SELECT Tipo,idBandera FROM bandera b INNER JOIN bandera_has_tipodonacion bd ON b.idBandera =  bd.bandera_idBandera INNER JOIN  tipodonacion td ON bd.tipodonacion_idTipoDonacion = td.idTipoDonacion WHERE idBandera = ?",
     [id],
@@ -45,7 +44,6 @@ router.get("/banderas/:id/donaciones", (req, res) => {
 //Ver evidencias de las banderas
 router.get("/banderas/:id/evidencias", (req, res) => {
   const { id } = req.params;
-  const { id1 } = req.params;
   mysqlConnection.query(
     "SELECT Descripcion, Imagen1, Imagen2, Imagen3, idBandera FROM bandera b , evidencias e WHERE e.idEvidencias = b.Evidencias_idEvidencias and idBandera=? ",
     [id],
@@ -93,10 +91,13 @@ router.post("/bandera/", (req, res) => {
     longitud,
     fechaRegistro,
     estado,
+    tipo1,
+    tipo2,
+    tipo3,
   } = req.body; //Obtenemos el usuario desde la aplicacion
   const query = ` 
 
-    CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
     `;
   mysqlConnection.query(
     query,
@@ -116,6 +117,9 @@ router.post("/bandera/", (req, res) => {
       longitud,
       fechaRegistro,
       estado,
+      tipo1,
+      tipo2,
+      tipo3,
     ],
     (err, rows, fields) => {
       if (!err) {
