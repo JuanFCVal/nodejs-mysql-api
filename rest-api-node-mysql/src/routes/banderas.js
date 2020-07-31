@@ -128,13 +128,10 @@ router.post("/bandera/", (req, res) => {
     tipo1,
     tipo2,
     tipo3,
-    imagen1,
-    imagen2,
-    imagen3
   } = req.body; //Obtenemos el usuario desde la aplicacion
   const query = ` 
 
-    CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
     `;
   mysqlConnection.query(
     query,
@@ -156,9 +153,6 @@ router.post("/bandera/", (req, res) => {
       tipo1,
       tipo2,
       tipo3,
-      imagen1,
-      imagen2,
-      imagen3
     ],
     (err, rows, fields) => {
       if (!err) {
@@ -183,13 +177,12 @@ router.put("/bandera/:id", (req, res) => {
     cedulaBeneficiario,
     apellidoBeneficiario,
     Usuario_cedula,
-    Evidencias_idEvidencias,
     longitud,
     fechaRegistro,
     estado,
   } = req.body;
   const { id } = req.params;
-  const query = "CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+  const query = "CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
   mysqlConnection.query(
     query,
     [
@@ -204,7 +197,6 @@ router.put("/bandera/:id", (req, res) => {
       cedulaBeneficiario,
       apellidoBeneficiario,
       Usuario_cedula,
-      Evidencias_idEvidencias,
       longitud,
       fechaRegistro,
       estado,

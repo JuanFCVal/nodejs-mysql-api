@@ -26,7 +26,6 @@ router.get("/donacion/pendiente", (req, res) => {
 //Ver los tipos de donaciones de una donacion
 router.get("/donacion/:id/donaciones", (req, res) => {
   const { id } = req.params;
-  const { id1 } = req.params;
   mysqlConnection.query("SELECT Tipo,idDonacion FROM donacion d INNER JOIN donacion_has_tipodonacion dd ON d.idDonacion =  dd.donacion_idDonacion INNER JOIN  tipodonacion td ON dd.tipodonacion_idTipoDonacion = td.idTipoDonacion WHERE idDonacion = ?",[id], (err, rows, fields) => {//Sentencia y lo que podemos obtener
     if (!err) {
       res.json(rows);
@@ -73,12 +72,12 @@ router.get("/donacion/:id", (req, res) => {
 
 //Insertar un dato dentro de nuestra tabla 
 router.post('/donacion/', (req, res)=>{
-    const {idDonacion, estado, fecha, Usuario_cedula, Evidencias_idEvidencias,tipo1,tipo2,tipo3 } = req.body //Obtenemos el usuario desde la aplicacion 
+    const {idDonacion, estado, fecha, Usuario_cedula } = req.body //Obtenemos el usuario desde la aplicacion 
     const query = ` 
 
-    CALL AgregaroEditarDonacion(?,?,?,?,?,?,?,?);
+    CALL AgregaroEditarDonacion(?,?,?,?);
     `;
-    mysqlConnection.query(query, [idDonacion, estado, fecha, Usuario_cedula, Evidencias_idEvidencias,tipo1,tipo2,tipo3], (err, rows, fields)=>{
+    mysqlConnection.query(query, [idDonacion, estado, fecha, Usuario_cedula], (err, rows, fields)=>{
             if (!err) {
                 res.json({Status: 'donacion registrada'});
               } else {
@@ -88,10 +87,10 @@ router.post('/donacion/', (req, res)=>{
 });
 //Metodo de actualizacion
 router.put('/donacion/:id', (req, res ) =>{
-    const {  estado, fecha, Usuario_cedula, Evidencias_idEvidencias } = req.body;
+    const {  estado, fecha, Usuario_cedula } = req.body;
     const{ id } = req.params;
     const query = "CALL AgregaroEditarDonacion(?,?,?,?,?);"
-    mysqlConnection.query(query, [id, estado, fecha, Usuario_cedula, Evidencias_idEvidencias], (err, rows, fields)=>{
+    mysqlConnection.query(query, [id, estado, fecha, Usuario_cedula], (err, rows, fields)=>{
             if (!err) {
                 res.json({status: 'Se ha actualizado la donacion de id'+id});
               } else {
