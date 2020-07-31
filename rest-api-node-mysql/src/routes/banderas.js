@@ -180,9 +180,12 @@ router.put("/bandera/:id", (req, res) => {
     longitud,
     fechaRegistro,
     estado,
+    tipo1,
+    tipo2,
+    tipo3
   } = req.body;
   const { id } = req.params;
-  const query = "CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+  const query = "CALL AgregaroEditarBandera(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
   mysqlConnection.query(
     query,
     [
@@ -200,6 +203,9 @@ router.put("/bandera/:id", (req, res) => {
       longitud,
       fechaRegistro,
       estado,
+      tipo1,
+      tipo2,
+      tipo3
     ],
     (err, rows, fields) => {
       if (!err) {
