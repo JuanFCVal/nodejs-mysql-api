@@ -82,12 +82,12 @@ router.get("/donacion/:id", (req, res) => {
 
 //Insertar un dato dentro de nuestra tabla 
 router.post('/donacion/', (req, res)=>{
-    const {idDonacion, estado, fecha, Usuario_cedula } = req.body //Obtenemos el usuario desde la aplicacion 
+    const {idDonacion, estado, fecha, Usuario_cedula,tipo1,tipo2,tipo3 } = req.body //Obtenemos el usuario desde la aplicacion 
     const query = ` 
 
-    CALL AgregaroEditarDonacion(?,?,?,?);
+    CALL AgregaroEditarDonacion(?,?,?,?,?,?,?);
     `;
-    mysqlConnection.query(query, [idDonacion, estado, fecha, Usuario_cedula], (err, rows, fields)=>{
+    mysqlConnection.query(query, [idDonacion, estado, fecha, Usuario_cedula,tipo1,tipo2,tipo3], (err, rows, fields)=>{
             if (!err) {
                 res.json({Status: 'donacion registrada'});
               } else {
@@ -99,7 +99,7 @@ router.post('/donacion/', (req, res)=>{
 router.put('/donacion/:id', (req, res ) =>{
     const {  estado, fecha, Usuario_cedula } = req.body;
     const{ id } = req.params;
-    const query = "CALL AgregaroEditarDonacion(?,?,?,?,?);"
+    const query = "CALL AgregaroEditarDonacion(?,?,?,?);"
     mysqlConnection.query(query, [id, estado, fecha, Usuario_cedula], (err, rows, fields)=>{
             if (!err) {
                 res.json({status: 'Se ha actualizado la donacion de id'+id});
