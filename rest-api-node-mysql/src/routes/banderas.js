@@ -220,6 +220,14 @@ router.put("/bandera/:id", (req, res) => {
 
 router.delete("/bandera/:id", (req, res) => {
   const { id } = req.params;
+  mysqlConnection.query('DELETE FROM bandera_has_tipodonacion where bandera_idBandera = ?', [id], (err, rows, fields) => {
+    if (!err) {
+        res.json({status: 'Se ha eliminado la donacion de id'+id});
+      } else {
+        console.log("No se ha eliminado la donacion " + err);
+      }
+})
+
   mysqlConnection.query("DELETE FROM bandera WHERE idBandera = ?", [id], (err, rows, fields) => {
     if (!err) {
       res.json({ status: "Se ha eliminado la bandera de id" + id });

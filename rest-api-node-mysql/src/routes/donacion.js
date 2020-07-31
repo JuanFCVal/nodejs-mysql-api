@@ -112,6 +112,9 @@ router.put('/donacion/:id', (req, res ) =>{
 
 router.delete('/donacion/:id',(req, res) => {
     const { id } = req.params;
+
+
+
     mysqlConnection.query('DELETE FROM donacion WHERE idDonacion = ?', [id], (err, rows, fields) => {
         if (!err) {
             res.json({status: 'Se ha eliminado la donacion de id'+id});
