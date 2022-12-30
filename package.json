@@ -17,7 +17,7 @@
     "woke-dyno": "0.0.4"
   },
   "devDependencies": {
-    "mocha": "^8.0.1",
+    "mocha": "^8.4.0",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   }
